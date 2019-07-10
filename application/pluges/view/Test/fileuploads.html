@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bootstrap-fileinput</title>
+    <meta name="keywords" content="H+后台主题,后台bootstrap框架,会员中心主题,后台HTML,响应式后台">
+    <meta name="description" content="H+是一个完全响应式，基于Bootstrap3最新版本开发的扁平化主题，她采用了主流的左右两栏式布局，使用了Html5+CSS3等现代技术">
+
+    <link rel="shortcut icon" href="favicon.ico"> 
+   <link href="__ADMIN__/css/bootstrap.min14ed.css?v=3.3.6" rel="stylesheet">
+    <link href="__ADMIN__/css/font-awesome.min93e3.css?v=4.4.0" rel="stylesheet">
+    <link href="__ADMIN__/css/style.min862f.css?v=4.1.0" rel="stylesheet">
+    <link href="__ADMIN__/plugins/bootstrap-fileinput/css/fileinput.css" media="all" rel="stylesheet" type="text/css" />
+    <script src="__ADMIN__/js/jquery.min.js?v=2.1.4"></script>
+     <script src="__ADMIN__/plugins/bootstrap-fileinput/js/fileinput.js" type="text/javascript"></script>
+     <script src="__ADMIN__/plugins/bootstrap-fileinput/js/locales/zh.js" type="text/javascript"></script>
+</head>
+
+<body class="gray-bg">
+<input type="text" id="info_upload" name="upl" class="input-large form-control">
+<input id="file-zh" name="file[]" type="file" multiple>
+
+<script type="text/javascript">
+ $('#file-zh').fileinput({
+              language: 'zh',
+              uploadUrl: "{:url('upload_downfiles')}",
+              allowedFileExtensions: ['rar','zip','pdf'],
+              uploadAsync: true, //异步上传
+			  maxFileSize: 8388608, //单位为kb，如果为0表示不限制文件大小
+              maxFileCount: 5
+          });
+
+          $('#file-zh').on("fileuploaded", function(event, data, previewId, index){
+              var images_value = $('#info_upload').val()=='' ? '' : $('#info_upload').val() + ',';
+              $('#info_upload').val( images_value + data.response);
+              $('#file-zh').val('');
+			  //在当前图片DIV里添加图片地址
+              $('#'+previewId).attr('studyfox_img',data.response);
+          });
+		  
+		 //删除文件
+          $('#file-zh').on("filesuccessremove", function(event, id){
+              var img_src = $('#'+id).attr('studyfox_img');
+              //后台删除文件
+              $.ajax({
+                  url: "{:url('delete_file')}",
+                  type: 'POST',
+                  data: {'img': img_src},
+                  success: function(result, textStatus){
+                      //图片删除成功后移除文本框图片信息，三种情况 ,号位置在前 后 或没有,号
+                      var images_value = $('#info_upload').val();//隐藏文本框的值
+                      images_value = images_value.replace(img_src+',', ''); //替换,号在右边
+                      images_value = images_value.replace(','+img_src, ''); //替换,号在左边
+                      images_value = images_value.replace(img_src, ''); //直接替换
+                      //重新赋值
+                      $('#info_upload').val(images_value);
+                  },
+                  error: function(XMLHttpRequest, textStatus){
+                     alert('删除失败!', {icon:2});
+                  }
+              });
+          });
+</script>
+</body>
+</html>

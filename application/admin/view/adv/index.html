@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html>
+
+<!-- Mirrored from www.zi-han.net/theme/hplus/tabs_panels.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 20 Jan 2016 14:19:53 GMT -->
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>H+ 后台主题UI框架 - 选项卡 &amp; 面板</title>
+<meta name="keywords" content="H+后台主题,后台bootstrap框架,会员中心主题,后台HTML,响应式后台">
+<meta name="description" content="H+是一个完全响应式，基于Bootstrap3最新版本开发的扁平化主题，她采用了主流的左右两栏式布局，使用了Html5+CSS3等现代技术">
+<link rel="shortcut icon" href="favicon.ico">
+<link href="__ADMIN__/css/bootstrap.min14ed.css?v=3.3.6" rel="stylesheet">
+<link href="__ADMIN__/css/font-awesome.min93e3.css?v=4.4.0" rel="stylesheet">
+<link href="__ADMIN__/css/plugins/iCheck/custom.css" rel="stylesheet">
+<link href="__ADMIN__/css/animate.min.css" rel="stylesheet">
+<link href="__ADMIN__/css/style.min862f.css?v=4.1.0" rel="stylesheet">
+<link rel="stylesheet" href="__ADMIN__/css/admin.css">
+<script src="__ADMIN__/js/jquery.min.js?v=2.1.4"></script>
+<script src="__ADMIN__/js/ajaxfileupload.js"></script>
+<script src="__ADMIN__/plugins/ueditor1_4_3_3/ueditor.config.js"></script>
+<script src="__ADMIN__/plugins/ueditor1_4_3_3/ueditor.all.js"></script>
+</head>
+
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeIn">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="tabs-container">
+        <ul class="nav nav-tabs">
+          <li class="{if condition="input('tab',1) eq 1"}active{/if}"><a data-toggle="tab" href="#tab-1" aria-expanded="true">信息列表</a> </li>
+          <li class="{if condition="input('tab',1) eq 2"}active{/if}"><a data-toggle="tab" href="#tab-2" aria-expanded="false">添加信息</a> </li>
+          <li id="showtab" class="{if condition="input('tab',1) eq 3"}active{/if}" style="{if condition="input('tab',1)!=3"}display:none{/if}">
+          <a data-toggle="tab" href="#tab-3" aria-expanded="false">编辑规则</a>
+          </li>
+        </ul>
+        <div class="tab-content">
+          <div id="tab-1" class="tab-pane {if condition="input('tab',1) eq 1"}active{/if}">
+            <div class="panel-body">
+              <form method="post" class="form-horizontal" action="{:url('adv/sort')}" data-type="ajax">
+                <input type="hidden" name="tab" value="1" />
+                <div class="table-responsive">
+                  <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th width="10%">排序</th>
+                        <th width="10%">ID</th>
+                        <th width="10%">所属类别</th>
+                        <th width="20%">图片</th>
+                        <th width="30%">链接</th>
+                        <th width="20%">操作</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                    
+                    {volist name="$infoList" id="vo"}
+                    <tr>
+                      <td><input type="text" class="form-control" name="listorder[{$vo.id}]" value="{$vo.listorder}"></td>
+                      <td>{$vo.id}</td>
+                      <td>{$vo.title}</td>
+                      <td>{if condition="$vo.thumb"}<img src="__UPLOAD__/{$vo.thumb}" width="100"/>{else/}<img src="__ADMIN__/img/nopic.jpg" width="100"/>{/if}</td>
+                      <td>{$vo.url}</td>
+                      <td><a href="{:url('index',['tab'=>3,'id'=>$vo.id])}" title="编辑"><i class="fa fa-edit text-navy"></i></a>&nbsp;&nbsp; <a name="delete" href="{:url('delete',['id'=>$vo.id])}" title="删除"><i class="fa fa-trash-o text-navy"></i></a></td>
+                    </tr>
+                    {/volist}
+                      </tbody>
+                    
+                  </table>
+                </div>
+                <div class="form-group">
+                  <div class="col-sm-4 col-sm-offset-2">
+                    <button class="btn btn-primary" type="submit">排序</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div id="tab-2" class="tab-pane {if condition="input('tab',1) eq 2"}active{/if}">
+            <div class="panel-body">
+              <form method="post" class="form-horizontal" action="{:url('adv/add')}" data-type="ajax">
+                <input type="hidden" name="tab" value="2" />
+                <div class="hr-line-dashed"></div>
+                <div class="form-group">
+                  <label class="col-sm-2 control-label">链接</label>
+                  <div class="col-sm-10">
+                    <input type="text" name="url" class="form-control" value="">
+                  </div>
+                </div>
+                <div class="hr-line-dashed"></div>
+                <div class="form-group">
+                  <label class="col-sm-2 control-label">广告分类</label>
+                  <div class="col-sm-10">
+                    <select class="form-control m-b" name="catid">
+                      <option value="0" selected>≡ 选择广告分类 ≡</option>
+                      
+                                                {volist name="category" id="vo"}
+                                                    
+                      <option value="{$vo.id}">{$vo.title}</option>
+                      
+                                                {/volist}
+                                            
+                    </select>
+                  </div>
+                </div>
+                <div class="hr-line-dashed"></div>
+                <div class="form-group">
+                  <label class="col-sm-2 control-label">缩略图</label>
+                  <div class="col-sm-10">
+                    <div id="file-pretty">
+                      <div>
+                        <input type="file" id="file_thumb" name="thumb" class="form-control" style="display: none;">
+                        <div class="input-append input-group"> <span class="input-group-btn">
+                          <button id="btn_thumb" class="btn btn-white" type="button">选择图片</button>
+                          </span>
+                          <input id="info_thumb" name="thumb" class="input-large form-control" type="text">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-2 control-label"></label>
+                  <div class="col-sm-10"> <img id="add_thumb" src="__ADMIN__/img/nopic.jpg" width="150"/> </div>
+                </div>
+                <div class="hr-line-dashed"></div>
+                <div class="form-group">
+                  <label class="col-sm-2 control-label">排序</label>
+                  <div class="col-sm-10">
+                    <input type="text" name="listorder" class="form-control" value="">
+                  </div>
+                </div>
+                <div class="hr-line-dashed"></div>
+                <div class="form-group">
+                  <div class="col-sm-4 col-sm-offset-2">
+                    <button class="btn btn-primary" type="submit">提交</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div id="tab-3" class="tab-pane {if condition="input('tab',1) eq 3"}active{/if}">
+            <div class="panel-body">
+              <form method="post" class="form-horizontal" action="{:url('adv/edit')}" data-type="ajax">
+                <input type="hidden" name="tab" value="3" />
+                <input type="hidden" name="id" value="{$info.id}" />
+                <div class="form-group">
+                  <label class="col-sm-2 control-label">链接</label>
+                  <div class="col-sm-10">
+                    <input type="text" name="url" class="form-control" value="{$info.url}">
+                  </div>
+                </div>
+                <div class="hr-line-dashed"></div>
+                <div class="form-group">
+                  <label class="col-sm-2 control-label">广告分类</label>
+                  <div class="col-sm-10">
+                    <select class="form-control m-b" name="catid">
+                      <option value="0" selected>≡ 选择广告分类 ≡</option>
+                      
+                                                {volist name="category" id="vo"}
+                                                    
+                      <option value="{$vo.id}" {if condition="$info.catid eq $vo.id"}selected{/if}>{$vo.title}</option>
+                      
+                                                {/volist}
+                                            
+                    </select>
+                  </div>
+                </div>
+                <div class="hr-line-dashed"></div>
+                <div class="form-group">
+                  <label class="col-sm-2 control-label">缩略图</label>
+                  <div class="col-sm-10">
+                    <div id="file-pretty">
+                      <div>
+                        <input type="file" id="file_thumb1" name="thumb1" class="form-control" style="display: none;">
+                        <div class="input-append input-group"> <span class="input-group-btn">
+                          <button id="btn_thumb1" class="btn btn-white" type="button">选择图片</button>
+                          </span>
+                          <input id="info_thumb1" name="thumb" class="input-large form-control" type="text" value="{$info.thumb}">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-2 control-label"></label>
+                  <div class="col-sm-10"> {if condition="$info.thumb"} <img id="edit_thumb" src="__UPLOAD__/{$info.thumb}" width="150"/> {else/} <img id="edit_thumb" src="__ADMIN__/img/nopic.jpg" width="150"/> {/if} </div>
+                </div>
+                <div class="hr-line-dashed"></div>
+                <div class="form-group">
+                  <label class="col-sm-2 control-label">排序</label>
+                  <div class="col-sm-10">
+                    <input type="text" name="listorder" class="form-control" value="{$info.listorder}">
+                  </div>
+                </div>
+                <div class="hr-line-dashed"></div>
+                <div class="form-group">
+                  <div class="col-sm-4 col-sm-offset-2">
+                    <button class="btn btn-primary" type="submit">提交</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div style="padding-bottom:50px"></div>
+<script src="__ADMIN__/js/bootstrap.min.js?v=3.3.6"></script> 
+<script src="__ADMIN__/js/content.min.js?v=1.0.0"></script> 
+<script src="__ADMIN__/js/plugins/iCheck/icheck.min.js"></script> 
+<script>
+        $(document).ready(function(){$(".i-checks").iCheck({checkboxClass:"icheckbox_square-green",radioClass:"iradio_square-green",})});
+    </script> 
+<script src="__ADMIN__/js/plugins/layer/layer.min.js"></script> 
+<script src="__ADMIN__/js/layer_hplus.js"></script> 
+<script>
+        $(document).ready(function(){
+			$(".i-checks").iCheck({checkboxClass:"icheckbox_square-green",radioClass:"iradio_square-green",});
+			
+			 $("#btn_thumb").click(function(){
+	                    $("#file_thumb").click();
+             });
+			 
+			 $("#btn_thumb1").click(function(){
+	                    $("#file_thumb1").click();
+             });
+			 
+			               //异步上传
+                $("body").delegate('#file_thumb', 'change', function(){
+                    var filepath = $("input[name='thumb']").val();
+                    var arr = filepath.split('.');
+                    var ext = arr[arr.length-1];
+                    var allowext = new Array("jpg","png","gif");
+                    if(allowext.indexOf(ext)>=0){
+                        $.ajaxFileUpload({
+                          url: "{:url('Uploads/upload_image')}",
+                          secureurl: false,
+                          fileElementId: 'file_thumb', //file标签ID
+                          dataType: 'json', //返回数据类型
+                          data:{name:'thumb'},
+                          success:function (data,status){
+                              $("#info_thumb").val(data);
+							  $("#add_thumb").attr('src','__UPLOAD__/'+ data);
+                              $("#info_thumb").focus();
+                          },
+                          complete:function (XMLHttpRequest){
+
+                          },
+                          error:function (data,status,e){
+                              layer.alert('上传失败!');
+                          },
+                      });
+                    } else {
+                        //清空file
+                        $("#file_thumb").val("");
+                        layer.alert('请上传合适的图片类型!');
+                    }
+
+                });
+				
+				
+				
+				//异步上传
+                $("body").delegate('#file_thumb1', 'change', function(){
+                    var filepath = $("input[name='thumb1']").val();
+                    var arr1 = filepath.split('.');
+                    var ext1 = arr1[arr1.length-1];
+                    var allowext1 = new Array("jpg","png","gif");
+                    if(allowext1.indexOf(ext1)>=0){
+                        $.ajaxFileUpload({
+                          url: "{:url('Uploads/upload_image')}",
+                          secureurl: false,
+                          fileElementId: 'file_thumb1', //file标签ID
+                          dataType: 'json', //返回数据类型
+                          data:{name:'thumb1'},
+                          success:function (data,status){
+                              $("#info_thumb1").val(data);
+							  $("#edit_thumb").attr('src','__UPLOAD__/'+ data);
+                              $("#info_thumb1").focus();
+                          },
+                          complete:function (XMLHttpRequest){
+
+                          },
+                          error:function (data,status,e){
+                              layer.alert('上传失败!');
+                          },
+                      });
+                    } else {
+                        //清空file
+                        $("#file_thumb1").val("");
+                        layer.alert('请上传合适的图片类型!');
+                    }
+
+                });
+			
+		});
+    </script>
+</body>
+</html>

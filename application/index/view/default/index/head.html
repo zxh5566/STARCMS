@@ -1,0 +1,63 @@
+  <div id="page" class="hfeed site">
+    <header id="masthead" class="site-header">
+
+      <nav id="top-header">
+        <div class="top-nav">
+          <div id="user-profile">欢迎访问STARCMS系统！
+            <span class="nav-set nav-login">
+              <i class="fa fa-user"></i> <a href="#">请登录</a>
+              <i class="fa fa-plus-square"></i> <a href="#">我要注册</a>
+            </span>
+          </div>
+        </div>
+      </nav>
+
+      <div id="menu-box">
+        <div id="top-menu">
+          <hgroup class="logo-site">
+            <h1 class="site-title">
+              <a href="/"> <img src="__UPLOAD__/{PC:sys key='sitelogo'}"  width="200" alt="starcms"></a>
+            </h1>
+          </hgroup>
+
+          <span class="nav-search"><i class="fa fa-search"> </i></span>
+
+          <div id="site-nav-wrap">
+            <div id="sidr-close"><a href="#sidr-close" class="toggle-sidr-close">×</a></div>
+            <nav id="site-nav" class="main-nav">
+              <a href="#" id="navigation-toggle" class="bars"><i class="fa fa-bars"> </i></a>
+              <div>
+                <ul class="down-menu nav-menu">
+                  <li class="current-menu-item"><a rel="nofollow" href="/"><i class="fa fa-home"></i> 首页</a></li>
+                  {volist name="menu" id="vo"}
+                  <li>
+                  {if $vo.isend eq 1}
+                    <a href="{$vo.url}"> {$vo.catname}</a>
+                   {else}
+                   <a href="#"> {$vo.catname}</a>
+                   {/if}
+                    <ul class="sub-menu">
+                      {volist name='vo.son' id='v1'}
+                      <li><a href="{$v1.url}"> {$v1.catname}</a></li>
+                      {/volist}
+                    </ul>
+                  </li>
+                 {/volist}
+                </ul>
+              </div>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div id="main-search">
+      <div id="searchbar">
+        <form action="" id="searchform" name="searchform" method="post">
+          <input type="text" id="s" name="keyboard" value="" placeholder="输入搜索内容" required />
+          <button id="searchsubmit" type="submit" name="submit">搜索</button>
+        </form>
+      </div>
+      <div class="clear"></div>
+    </div>
+  </div>

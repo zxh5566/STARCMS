@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+
+<!-- Mirrored from www.zi-han.net/theme/hplus/tabs_panels.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 20 Jan 2016 14:19:53 GMT -->
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>H+ 后台主题UI框架 - 选项卡 &amp; 面板</title>
+    <meta name="keywords" content="H+后台主题,后台bootstrap框架,会员中心主题,后台HTML,响应式后台">
+    <meta name="description" content="H+是一个完全响应式，基于Bootstrap3最新版本开发的扁平化主题，她采用了主流的左右两栏式布局，使用了Html5+CSS3等现代技术">
+
+    <link rel="shortcut icon" href="favicon.ico"> <link href="__ADMIN__/css/bootstrap.min14ed.css?v=3.3.6" rel="stylesheet">
+    <link href="__ADMIN__/css/font-awesome.min93e3.css?v=4.4.0" rel="stylesheet">
+    <link href="__ADMIN__/css/plugins/iCheck/custom.css" rel="stylesheet">
+    <link href="__ADMIN__/css/animate.min.css" rel="stylesheet">
+    <link href="__ADMIN__/css/style.min862f.css?v=4.1.0" rel="stylesheet">
+    <link rel="stylesheet" href="__ADMIN__/css/admin.css">
+</head>
+
+<body class="gray-bg">
+    <div class="wrapper wrapper-content animated fadeIn">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="tabs-container">
+                    <ul class="nav nav-tabs">
+                        <li><a href="{:url('models/index')}"><i class="fa fa-mail-reply text-navy"></i>返回模型管理</a></li>
+                        <li class="{if condition="input('tab',1) eq 1"}active{/if}"><a data-toggle="tab" href="#tab-1" aria-expanded="true">{$modelName|default=""}字段管理</a>
+                        </li>
+                        <li class="{if condition="input('tab',1) eq 2"}active{/if}"><a data-toggle="tab" href="#tab-2" aria-expanded="false">添加字段</a>
+                        </li>
+                        <li id="showtab" class="{if condition="input('tab',1) eq 3"}active{/if}" style="{if condition="input('tab',1)!=3"}display:none{/if}"><a data-toggle="tab" href="#tab-3" aria-expanded="false">编辑字段</a>
+                        </li>
+<!--                        <li class="{if condition="input('tab',1) eq 4"}active{/if}""><a data-toggle="tab" href="#tab-4" aria-expanded="false">预览模型</a>
+                        </li>-->
+                    </ul>
+                    <div class="tab-content">
+                        <div id="tab-1" class="tab-pane {if condition="input('tab',1) eq 1"}active{/if}">
+                            <div class="panel-body">
+                                <form method="post" class="form-horizontal" action="{:url('models_field/sort')}" data-type="ajax">
+                                    <input type="hidden" name="tab" value="1" />
+                                    <input type="hidden" name="id" value="{:input('id',0)}" />
+                                    <div class="table-responsive">
+                                        <table class="table table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th width="10%">排序</th>
+                                                    <th width="20%">字段名</th>
+                                                    <th width="20%">别名</th>
+                                                    <th width="20%">类型</th>
+                                                    <th width="30%">操作</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {volist name="modelsfield" id="vo"}
+                                                    <tr>
+                                                        <td>
+                                                            <input type="text" class="form-control" name="sort[{$vo.id}]" value="{$vo.sort}" {eq name="vo.issystem" value="1"}disabled{/eq}>
+                                                        </td>
+                                                        <td>{$vo.field}</td>
+                                                        <td>{$vo.name}</td>
+                                                        <td>{$vo.formtype}</td>
+                                                        <td>
+                                                            {if condition="$vo.issystem == 1"}
+                                                                <a href="javascript:;"><i class="fa fa-ban text-navy"></i></a>&nbsp;&nbsp;<a href="javascript:;"><i class="fa fa-ban text-navy"></i></a>
+                                                            {else/}
+                                                                <a href="{:url('index',['tab'=>3,'id'=>$vo.modelid,'fid'=>$vo.id])}" title="编辑"><i class="fa fa-edit text-navy"></i></a>&nbsp;&nbsp;
+                                                                 <a name="delete" href="{:url('delete',['id'=>$vo.id,'modelid'=>$vo.modelid])}" title="删除"><i class="fa fa-trash-o text-navy"></i></a>
+                                                            {/if}
+                                                        </td>
+                                                    </tr>
+                                                {/volist}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-4 col-sm-offset-2">
+                                            <button class="btn btn-primary" type="submit">提交</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div id="tab-2" class="tab-pane {if condition="input('tab',1) eq 2"}active{/if}">
+                            <div class="panel-body">
+                                <form method="post" class="form-horizontal" action="{:url('models_field/add')}" data-type="ajax">
+                                    <input type="hidden" name="tab" value="2" />
+                                    <input type="hidden" name="modelid" value="{:input('id',0)}" />
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">字段名称</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" name="field" class="form-control" value="">
+                                        </div>
+                                    </div>
+                                    <div class="hr-line-dashed"></div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">字段别名</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" name="name" class="form-control" value="">
+                                        </div>
+                                    </div>
+                                    <div class="hr-line-dashed"></div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">字段类型</label>
+                                        <div class="col-sm-10">
+                                            <select class="form-control m-b" name="formtype" onchange="field_setting(this.value)">
+                                                <option value="" selected>≡ 请选择字段类型 ≡</option>
+                                                <option value="text">单行文本</option>
+                                                <option value="textarea">多行文本</option>
+                                                <option value="editor">编辑器</option>
+                                                <option value="box">选项</option>
+                                                <option value="image">图片</option>
+                                                <option value="images">多图片</option>
+                                                <option value="number">数字</option>
+                                                <option value="datetime">日期和时间</option>
+                                                <option value="downfile">单文件上传</option>
+                                                <option value="downfiles">多文件上传</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="hr-line-dashed"></div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">参数设置</label>
+                                        <div class="col-sm-10">
+                                            <div id="setting">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="hr-line-dashed"></div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">排序</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" name="sort" class="form-control" value="">
+                                        </div>
+                                    </div>
+                                    <div class="hr-line-dashed"></div>
+                                    <div class="form-group">
+                                        <div class="col-sm-4 col-sm-offset-2">
+                                            <button class="btn btn-primary" type="submit">提交</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <?php if(isset($fieldinfo)){ ?>
+                        <div id="tab-3" class="tab-pane {if condition="input('tab',1) eq 3"}active{/if}">
+                            <div class="panel-body">
+                                 <form method="post" class="form-horizontal" action="{:url('models_field/edit')}" data-type="ajax">
+                                    <input type="hidden" name="tab" value="3" />
+                                    <input type="hidden" name="id" value="{$fieldinfo.id}" />
+                                    <input type="hidden" name="modelid" value="{:input('id',0)}" />
+                                    <input type="hidden" name="formtype" value="{$fieldinfo.formtype}" />
+
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">字段名称</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" name="field" class="form-control" value="{$fieldinfo.field}">
+                                        </div>
+                                    </div>
+                                    <div class="hr-line-dashed"></div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">字段别名</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" name="name" class="form-control" value="{$fieldinfo.name}">
+                                        </div>
+                                    </div>
+                                    <div class="hr-line-dashed"></div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">字段类型</label>
+                                        <div class="col-sm-10">
+                                            <label class="control-label">{$fieldinfo.formtype}</label>
+                                        </div>
+                                    </div>
+                                    <div class="hr-line-dashed"></div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">参数设置</label>
+                                        <div class="col-sm-10">
+                                            <div id="setting">
+                                                {$fieldinfo.setting}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="hr-line-dashed"></div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">排序</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" name="sort" class="form-control" value="{$fieldinfo.sort}">
+                                        </div>
+                                    </div>
+
+                                    <div class="hr-line-dashed"></div>
+                                    <div class="form-group">
+                                        <div class="col-sm-4 col-sm-offset-2">
+                                            <button class="btn btn-primary" type="submit">提交</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <?php } ?>
+                        
+                       
+                        
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+ <script src="__ADMIN__/js/jquery.min.js?v=2.1.4"></script>
+    <script src="__ADMIN__/js/bootstrap.min.js?v=3.3.6"></script>
+    <script src="__ADMIN__/js/content.min.js?v=1.0.0"></script>
+    <script src="__ADMIN__/js/plugins/iCheck/icheck.min.js"></script>
+    <script>
+
+        function field_setting(formtype){
+            $.getJSON("{:url('field_setting')}",{fieldtype:formtype},function(data){
+                $('#setting').html(data.setting);
+            });
+        }
+    </script>
+    <script src="__ADMIN__/js/plugins/layer/layer.min.js"></script>
+    <script src="__ADMIN__/js/layer_hplus.js"></script>
+    <script src="__ADMIN__/js/plugins/cropper/cropper.min.js"></script>
+    <script src="__ADMIN__/js/plugins/layer/laydate/laydate.js"></script>
+
+</body>
+
+</html>

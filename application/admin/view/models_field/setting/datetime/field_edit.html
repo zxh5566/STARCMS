@@ -1,0 +1,9 @@
+<div class="col-md-12">
+    <div class="form-group">
+        <label class="col-sm-1 control-label">时间格式</label>
+        <div class="col-sm-11">
+            <input type="radio" name="setting[fieldtype]" value="date" <?php if($setting['fieldtype']=='date') echo 'checked'; ?>> 日期
+            <input type="radio" name="setting[fieldtype]" value="datetime" <?php if($setting['fieldtype']=='datetime') echo 'checked'; ?>> 日期+时间
+        </div>
+    </div>
+</div>

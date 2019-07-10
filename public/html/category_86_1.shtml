@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>javaDK</title>
+  <meta name="keywords" content="雪狐CMS内容管理系统">
+  <meta name="description" content="雪狐CMS内容管理系统">
+  <link rel="shortcut icon" href="./favicon.ico">
+  <link rel="apple-touch-icon" href="/public/static/index/default/images/favicon.png" sizes="114x114">
+  <!--[if lt IE 9]>
+    <script type='text/javascript' src='/public/static/index/default/js/html5-css3.js'></script>
+  <![endif]-->
+  <link rel="stylesheet" type="text/css" href="/public/static/index/default/css/autoptimize.css" />
+  <link rel="stylesheet" type="text/css" href="/public/static/index/default/plugins/font-awesome-4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="/public/static/index/default/css/layui.css" />
+  <style>
+  .leftmenu{ width:80%; margin:10px auto;}
+  .leftmenu h4{ height:30px; line-height:30px;  text-indent:20px;}
+  .leftmenu h4 a{ font-weight:bold;}
+  .leftmenu .second li{text-indent:20px;}
+  .leftmenu .third li a{padding-left:10px; font-size:13px;}
+  </style>
+  <script type='text/javascript' src='/public/static/index/default/js/push.js'></script>
+  <script type='text/javascript' src='/public/static/index/default/js/jquery/jquery.js'></script>
+  <script type='text/javascript' src='/public/static/index/default/js/jquery/jquery-migrate.min.js'></script>
+  <script type='text/javascript' src='/public/static/index/default/plugins/nix-gravatar-cache/js/main.js'></script>
+  <script type='text/javascript' src='/public/static/index/default/js/jquery.min.js'></script>
+  <script type='text/javascript' src='/public/static/index/default/js/scrollmonitor.js'></script>
+  <script type='text/javascript' src='/public/static/index/default/js/slides.js'></script>
+  <script type='text/javascript' src='/public/static/index/default/js/echo.min.js'></script>
+  <script type='text/javascript' src='/public/static/index/default/js/script.js'></script>
+  <script type='text/javascript' src='/public/static/index/default/js/flexisel.js'></script>
+</head>
+
+<body>
+  <div id="page" class="hfeed site">
+    <header id="masthead" class="site-header">
+
+      <nav id="top-header">
+        <div class="top-nav">
+          <div id="user-profile">欢迎访问STARCMS系统！
+            <span class="nav-set nav-login">
+              <i class="fa fa-user"></i> <a href="#">请登录</a>
+              <i class="fa fa-plus-square"></i> <a href="#">我要注册</a>
+            </span>
+          </div>
+        </div>
+      </nav>
+
+      <div id="menu-box">
+        <div id="top-menu">
+          <hgroup class="logo-site">
+            <h1 class="site-title">
+              <a href="/"> <img src="/public/uploads/20190406/f40203ad7253d17906dc2f1275d83def.png"  width="200" alt="starcms"></a>
+            </h1>
+          </hgroup>
+
+          <span class="nav-search"><i class="fa fa-search"> </i></span>
+
+          <div id="site-nav-wrap">
+            <div id="sidr-close"><a href="#sidr-close" class="toggle-sidr-close">×</a></div>
+            <nav id="site-nav" class="main-nav">
+              <a href="#" id="navigation-toggle" class="bars"><i class="fa fa-bars"> </i></a>
+              <div>
+                <ul class="down-menu nav-menu">
+                  <li class="current-menu-item"><a rel="nofollow" href="/"><i class="fa fa-home"></i> 首页</a></li>
+                                    <li>
+                                     <a href="#"> 关于我们</a>
+                                       <ul class="sub-menu">
+                                            <li><a href="/public/html/category_96_1.shtml"> 公司介绍</a></li>
+                                            <li><a href="/public/html/category_98_1.shtml"> 企业文化</a></li>
+                                            <li><a href="/public/html/category_99_1.shtml"> 组织结构</a></li>
+                                            <li><a href="/public/html/category_100_1.shtml"> 发展历程</a></li>
+                                          </ul>
+                  </li>
+                                   <li>
+                                     <a href="#"> 企业相册</a>
+                                       <ul class="sub-menu">
+                                            <li><a href="/public/html/category_101_1.shtml"> 公司资质</a></li>
+                                          </ul>
+                  </li>
+                                   <li>
+                                     <a href="#"> 文章资讯</a>
+                                       <ul class="sub-menu">
+                                            <li><a href="/public/html/category_29_1.shtml"> 公司动态</a></li>
+                                            <li><a href="/public/html/category_28_1.shtml"> 行业资讯</a></li>
+                                          </ul>
+                  </li>
+                                   <li>
+                                     <a href="#"> 产品展示</a>
+                                       <ul class="sub-menu">
+                                            <li><a href="/public/html/category_74_1.shtml"> JAVA</a></li>
+                                            <li><a href="/public/html/category_75_1.shtml"> ASP.NET</a></li>
+                                            <li><a href="/public/html/category_34_1.shtml"> PHP</a></li>
+                                          </ul>
+                  </li>
+                                   <li>
+                                      <a href="/public/html/category_82_1.shtml"> 文件下载</a>
+                                       <ul class="sub-menu">
+                                          </ul>
+                  </li>
+                                 </ul>
+              </div>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div id="main-search">
+      <div id="searchbar">
+        <form action="" id="searchform" name="searchform" method="post">
+          <input type="text" id="s" name="keyboard" value="" placeholder="输入搜索内容" required />
+          <button id="searchsubmit" type="submit" name="submit">搜索</button>
+        </form>
+      </div>
+      <div class="clear"></div>
+    </div>
+  </div>
+
+<nav class="breadcrumb">
+    <a href='/'>首页</a> / <a href='/public/html/category_30_1.shtml'>产品展示</a> / <a href='/public/html/category_74_1.shtml'>JAVA</a> / javaDK</nav>
+
+  <div id="content" class="site-content">
+    <div id="primary" class="content-area">
+      <main id="main" class="site-main">
+                <div class="layui-box layui-laypage layui-laypage-molv" style="float:right;">
+                </div>
+      </main>
+    </div>
+
+
+
+
+    <div id="sidebar" class="widget-area">
+    
+    
+          <aside class="widget">
+        <h3 class="widget-title"><i class="fa-bars fa"></i>分类目录</h3>
+        <div class="leftmenu">
+                  <h4><a href="#">产品展示</a></h4>
+          <ul class="second">
+                    <li><a href="#">|--- JAVA</a></li>
+          <ul>
+                     <li><a href="#">|---- javaEE</a></li>
+           <ul>
+                      <li><a href="/public/html/category_93_1.shtml">|---- dddff</a></li>
+                      <li><a href="/public/html/category_89_1.shtml">|---- ffffff</a></li>
+                      </ul>
+                     <li><a href="/public/html/category_86_1.shtml">|---- javaDK</a></li>
+           <ul>
+                      </ul>
+                    </ul>
+                    <li><a href="/public/html/category_75_1.shtml">|--- ASP.NET</a></li>
+          <ul>
+                    </ul>
+                    <li><a href="/public/html/category_34_1.shtml">|--- PHP</a></li>
+          <ul>
+                    </ul>
+                    </ul>
+                   </div>
+          <div class="clear"></div>
+      </aside>
+    
+    
+      <aside class="widget widget_hot_commend">
+        <h3 class="widget-title"><i class="fa-bars fa"></i>本类推荐</h3>
+        <div id="hot" class="hot_commend">
+          <ul>
+            {Article:article catid="$id" row="3" flag="r"}
+            <li>
+              <figure class="thumbnail"><a href="#"><img src="/public/uploads/" alt=""></a></figure>
+              <div class="hot-title"><a href="#"></a></div>
+              <div class="views">阅读 </div>
+              <i class="fa-thumbs-o-up fa"> 0</i>
+            </li>
+           {/Article:article}
+          </ul>
+          <div class="clear"></div>
+        </div>
+        
+      </aside>
+
+      <aside class="widget widget_hot_post">
+        <h3 class="widget-title"><i class="fa-bars fa"></i>热门文章</h3>
+        <div id="hot_post_widget">
+          <ul>
+            {Article:article catid="$id" row="5" orderby="views"}
+            <li><span class="li-icon li-icon-3">3</span><a href="/index.php/index/index/info/id/30.html"></a></li>
+            {/Article:article}
+          </ul>
+        </div>
+      </aside>
+
+
+    </div>
+
+    <div class="clear"></div>
+
+
+    </div>
+
+  </div>
+
+  <div id="footer-widget-box">
+    <div class="footer-widget">
+
+    <aside class="widget widget_nav_menu">
+      <div>
+        <ul class="menu">
+          <li class="menu-item"><a href="#"><i class="fa-indent fa"></i><span class="font-text">测试1</span></a></li>
+          <li class="menu-item"><a href="#"><i class="fa-wrench fa"></i><span class="font-text">测试1</span></a></li>
+          <li class="menu-item"><a href="#"><i class="fa-file-code-o fa"></i><span class="font-text">测试1</span></a></li>
+          <li class="menu-item"><a href="#"><i class="fa-database fa"></i><span class="font-text">测试1</span></a></li>
+          <li class="menu-item"><a href="#"><i class="fa-leaf fa"></i><span class="font-text">测试1</span></a></li>
+          <li class="menu-item"><a href="#"><i class="fa-desktop fa"></i><span class="font-text">测试1</span></a></li>
+          <li class="menu-item"><a href="#"><i class="fa-star-half-o fa"></i><span class="font-text">测试1</span></a></li>
+          <li class="menu-item"><a href="#"><i class="fa-envelope-o fa"></i><span class="font-text">测试1</span></a></li>
+          <li class="menu-item"><a href="#"><i class="fa-pencil-square-o fa"></i><span class="font-text">测试1</span></a></li>
+        </ul>
+      </div>
+      <div class="clear"></div>
+    </aside>
+    <div class="clear"></div>
+    </div>
+  </div>
+
+  <footer id="colophon" class="site-footer">
+    <div class="site-info">Copyright © 版权所有：天下星网络</div>
+  </footer>
+
+  <ul id="scroll">
+    <li><a class="scroll-t" title="返回顶部"><i class="fa-angle-up fa"></i></a></li>
+    <li><a class="scroll-b" title="返回底部"><i class="fa-angle-down fa"></i></a></li>
+    <li><a class="qr" title="二维码"><i class="fa-qrcode fa"></i></a></li>
+  </ul>
+  <span class="qr-img"><img src="/public/static/index/default/images/weixin.png" alt="雪狐网"></span>
+
+  <script type='text/javascript' src='/public/static/index/default/js/superfish.js'></script>
+  <script type='text/javascript' src='/public/static/index/default/js/infinite-scroll.js'></script>
+  <script type='text/javascript' src='/public/static/index/default/js/3dtag.js'></script>
+</body>
+</html>

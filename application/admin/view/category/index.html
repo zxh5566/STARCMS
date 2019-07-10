@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html>
+
+
+<!-- Mirrored from www.zi-han.net/theme/hplus/tabs_panels.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 20 Jan 2016 14:19:53 GMT -->
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <title>H+ 后台主题UI框架 - 选项卡 &amp; 面板</title>
+    <meta name="keywords" content="H+后台主题,后台bootstrap框架,会员中心主题,后台HTML,响应式后台">
+    <meta name="description" content="H+是一个完全响应式，基于Bootstrap3最新版本开发的扁平化主题，她采用了主流的左右两栏式布局，使用了Html5+CSS3等现代技术">
+
+    <link rel="shortcut icon" href="favicon.ico"> <link href="__ADMIN__/css/bootstrap.min14ed.css?v=3.3.6" rel="stylesheet">
+    <link href="__ADMIN__/css/font-awesome.min93e3.css?v=4.4.0" rel="stylesheet">
+    <link href="__ADMIN__/css/plugins/iCheck/custom.css" rel="stylesheet">
+    <link href="__ADMIN__/css/animate.min.css" rel="stylesheet">
+    <link href="__ADMIN__/css/style.min862f.css?v=4.1.0" rel="stylesheet">
+    <link rel="stylesheet" href="__ADMIN__/css/admin.css">
+    <script src="__ADMIN__/js/jquery.min.js?v=2.1.4"></script>
+    <script src="__ADMIN__/js/ajaxfileupload.js"></script>
+     <script src="__ADMIN__/plugins/ueditor1_4_3_3/ueditor.config.js"></script>
+    <script src="__ADMIN__/plugins/ueditor1_4_3_3/ueditor.all.js"></script>
+</head>
+
+<body class="gray-bg">
+    <div class="wrapper wrapper-content animated fadeIn">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="tabs-container">
+                    <ul class="nav nav-tabs">
+                        <li class="{if condition="input('tab',1) eq 1"}active{/if}"><a data-toggle="tab" href="#tab-1" aria-expanded="true">分类列表</a>
+                        </li>
+                        <li class="{if condition="input('tab',1) eq 2"}active{/if}"><a data-toggle="tab" href="#tab-2" aria-expanded="false">添加分类</a>
+                        </li>
+ <li id="showtab" class="{if condition="input('tab',1) eq 3"}active{/if}" style="{if condition="input('tab',1)!=3"}display:none{/if}"><a data-toggle="tab" href="#tab-3" aria-expanded="false">编辑分类</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div id="tab-1" class="tab-pane {if condition="input('tab',1) eq 1"}active{/if}">
+                            <div class="panel-body">
+                                <form method="post" class="form-horizontal" action="{:url('category/sort')}" data-type="ajax">
+                                    <input type="hidden" name="tab" value="1" />
+                                    <div class="table-responsive">
+                                        <table class="table table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th width="10%">排序</th>
+                                                    <th width="10%">分类ID</th>
+                                                    <th width="15%">分类名称</th>
+                                                    <th width="15%">所属模型</th>
+                                                    <th width="20%">类型</th>
+                                                    <th width="10%">终极分类</th>
+                                                    <th width="20%">操作</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {volist name="category" id="vo"}
+                                                    <tr>
+                                                        <td>
+                                                            <input type="text" class="form-control" name="listorder[{$vo.id}]" value="{$vo.listorder}">
+                                                        </td>
+                                                        <td>{$vo.id}</td>
+                                                        <td style="text-align:left">{$vo.catname}</td>
+                                                        <td>{$vo.name}</td>
+                                                        <td>
+                                                        {if condition="$vo.cattype eq 1"}文章列表
+                                                        {elseif condition="$vo.cattype eq 2"}图片列表
+                                                        {elseif condition="$vo.cattype eq 3"}栏目介绍
+                                                        {/if}</td>
+                                                        <td>{if condition="$vo.isend eq 1"}√{/if}</td>
+                                                         <td>
+                                                            {eq name="vo.isend" value="0"}
+                                                            <a href="{:url('index',array('tab'=>2,'parentid'=>$vo.id))}" title="添加子分类"><i class="fa fa-plus text-navy"></i></a>&nbsp;&nbsp;
+                                                            {/eq}
+                                                            {eq name="vo.isend" value="1"}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{/eq}
+                                                             <a href="{:url('index',['tab'=>3,'id'=>$vo.id])}" title="编辑"><i class="fa fa-edit text-navy"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
+                                                            <a name="delete" href="{:url('delete',['id'=>$vo.id])}" title="删除"><i class="fa fa-trash-o text-navy"></i></a>
+                                                        </td>
+                                                    </tr>
+                                                {/volist}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="hr-line-dashed"></div>
+                                    <div class="form-group">
+                                        <div class="col-sm-4 col-sm-offset-2">
+                                            <button class="btn btn-primary" type="submit">提交</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div id="tab-2" class="tab-pane {if condition="input('tab',1) eq 2"}active{/if}">
+                            <div class="panel-body">
+                                <form method="post" class="form-horizontal" action="{:url('category/add')}" data-type="ajax">
+                                    <input type="hidden" name="tab" value="2" />
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">分类名称</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" name="catname" class="form-control" value="">
+                                        </div>
+                                    </div>
+                                    <div class="hr-line-dashed"></div>
+                                   
+                 <div class="form-group">
+                 <label class="col-sm-2 control-label">分类图标</label>
+                <div class="col-sm-10"><div id="file-pretty"><div>
+                <input type="file" id="file_thumb" name="thumb" class="form-control" style="display: none;">
+                <div class="input-append input-group">
+                 <span class="input-group-btn"><button id="btn_thumb" class="btn btn-white" type="button">选择图片</button></span>
+                 <input id="info_thumb" name="catthumb" class="input-large form-control" type="text">
+                 </div>
+                 </div></div></div>
+                 </div>                  
+                                         <div class="form-group">
+                                        <label class="col-sm-2 control-label"></label>
+                                        <div class="col-sm-10">
+                                          <img id="add_thumb" src="__ADMIN__/img/nopic.jpg" width="150"/>
+                                        </div>
+                                    </div>
+                                    <div class="hr-line-dashed"></div>
+                                    
+                                    <div class="form-group">
+                 <label class="col-sm-2 control-label">分类banner</label>
+                <div class="col-sm-10"><div id="file-pretty"><div>
+                <input type="file" id="file_thumb3" name="thumb3" class="form-control" style="display: none;">
+                <div class="input-append input-group">
+                 <span class="input-group-btn"><button id="btn_thumb3" class="btn btn-white" type="button">选择图片</button></span>
+                 <input id="info_thumb3" name="catbanner" class="input-large form-control" type="text">
+                 </div>
+                 </div></div></div>
+                 </div>                  
+                                         <div class="form-group">
+                                        <label class="col-sm-2 control-label"></label>
+                                        <div class="col-sm-10">
+                                          <img id="add_thumb3" src="__ADMIN__/img/nopic.jpg" width="150"/>
+                                        </div>
+                                    </div>
+                                    <div class="hr-line-dashed"></div>
+                                    
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">上级分类</label>
+                                        <div class="col-sm-10">
+                                            <select class="form-control m-b" name="parentid">
+                                                <option value="0" selected>≡ 作为顶级分类 ≡</option>
+                                                {volist name="category" id="vo"}
+                                                    <option value="{$vo.id}" {if condition="$vo.id eq input('parentid',0)"}selected{/if} {$vo.isend ? 'disabled' : ''}>{$vo.catname}</option>
+                                                {/volist}
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="hr-line-dashed"></div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">所属模型</label>
+                                        <div class="col-sm-10">
+                                            <select class="form-control m-b" name="modelid">
+                                                <option value="0" selected>≡ 请选择模型 ≡</option>
+                                                {volist name="models" id="vo"}
+                                                    <option value="{$vo.id}">{$vo.name}</option>
+                                                {/volist}
+                                            </select>
+                                        </div>
+                                    </div>
+                                    
+                                     <div class="hr-line-dashed"></div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">选择类型</label>
+                                        <div class="col-sm-10">
+                                            <select class="form-control m-b" name="cattype">
+                                                <option value="0" selected>≡ 请选择类型 ≡</option>
+                                                 <option value="1">文章列表</option>
+                                                 <option value="2">图片列表</option>
+                                                 <option value="3">栏目介绍</option>
+                                                 <option value="4">外部链接</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    
+                                    
+ <div class="hr-line-dashed"></div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">是否终极分类</label>
+                                        <div class="col-sm-10 checkbox i-checks">
+                                            <label><input type="checkbox" name="isend" value="0"> <i></i> 终极分类 (仅终极分类可添加内容)</label>
+                                        </div>
+                                    </div>
+                                    <div class="hr-line-dashed"></div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">分类目录</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" name="catdir" class="form-control" value="">
+                                        </div>
+                                    </div>
+                                    <div class="hr-line-dashed"></div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">指定分类地址</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" name="seturl" class="form-control" value=""> <span class="help-block m-b-none">留空按默认地址访问.</span>
+                                        </div>
+                                    </div>
+                                    <div class="hr-line-dashed"></div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">是否首页菜单显示</label>
+                                        <div class="col-sm-10">
+                                            <div class="radio i-checks">
+                                                <label><input type="radio" value="1" name="ismenu" checked> <i></i> 显示</label>
+                                                <label><input type="radio" value="0" name="ismenu"> <i></i> 隐藏</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="hr-line-dashed"></div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">排序</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" name="listorder" class="form-control" value="">
+                                        </div>
+                                    </div>
+                                    <div class="hr-line-dashed"></div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">栏目介绍</label>
+                                        <div class="col-sm-10">
+                                        <script id="container" name="catinfo" type="text/plain"></script>
+                                        <script>
+                                          var um = UE.getEditor('container',{
+                                              initialFrameHeight:300,
+                                              autoHeightEnabled:false,
+                                              catchRemoteImageEnable:true
+                                          });
+
+                                        </script>
+                                        </div>
+                                    </div>
+                                    <div class="hr-line-dashed"></div>
+                                    <div class="form-group">
+                                        <div class="col-sm-4 col-sm-offset-2">
+                                            <button class="btn btn-primary" type="submit">提交</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <!--编辑-->
+                        <div id="tab-3" class="tab-pane {if condition="input('tab',1) eq 3"}active{/if}">
+                            <div class="panel-body">
+                                <form method="post" class="form-horizontal" action="{:url('category/edit')}" data-type="ajax">
+                                    <input type="hidden" name="tab" value="3" />
+                                    <input type="hidden" name="id" value="{$category_info.id}"/>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">分类名称</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" name="catname" class="form-control" value="{$category_info.catname}">
+                                        </div>
+                                    </div>
+                                    <div class="hr-line-dashed"></div>
+                                    
+                                    
+                 <div class="form-group">
+                 <label class="col-sm-2 control-label">分类图标</label>
+                <div class="col-sm-10"><div id="file-pretty"><div>
+                <input type="file" id="file_thumb1" name="thumb1" class="form-control" style="display: none;">
+                <div class="input-append input-group">
+                 <span class="input-group-btn"><button id="btn_thumb1" class="btn btn-white" type="button">选择图片</button></span>
+                 <input id="info_thumb1" name="catthumb" class="input-large form-control" type="text" value="{$category_info.catthumb}">
+                 </div>
+                 </div></div></div>
+                 </div>                  
+                                  
+                                 
+                                   <div class="form-group">
+                                        <label class="col-sm-2 control-label"></label>
+                                        <div class="col-sm-10">
+                                         {if condition="$category_info.catthumb"}
+                                          <img id="edit_thumb" src="/uploads/{$category_info.catthumb}" width="150"/>
+                                          {else/}
+                                          <img id="edit_thumb" src="__ADMIN__/img/nopic.jpg" width="150"/>
+                                          {/if}
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="hr-line-dashed"></div>
+                                    
+                                    
+                                     <div class="form-group">
+                 <label class="col-sm-2 control-label">分类banner</label>
+                <div class="col-sm-10"><div id="file-pretty"><div>
+                <input type="file" id="file_thumb2" name="thumb2" class="form-control" style="display: none;">
+                <div class="input-append input-group">
+                 <span class="input-group-btn"><button id="btn_thumb2" class="btn btn-white" type="button">选择图片</button></span>
+                 <input id="info_thumb2" name="catbanner" class="input-large form-control" type="text" value="{$category_info.catbanner}">
+                 </div>
+                 </div></div></div>
+                 </div>                  
+                                  
+                                 
+                                   <div class="form-group">
+                                        <label class="col-sm-2 control-label"></label>
+                                        <div class="col-sm-10">
+                                         {if condition="$category_info.catthumb"}
+                                          <img id="edit_thumb2" src="/uploads/{$category_info.catbanner}" width="150"/>
+                                          {else/}
+                                          <img id="edit_thumb2" src="__ADMIN__/img/nopic.jpg" width="150"/>
+                                          {/if}
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="hr-line-dashed"></div>
+                                    
+                                    
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">上级分类</label>
+                                        <div class="col-sm-10">
+                                            <select class="form-control m-b" name="parentid">
+                                                <option value="0" selected>≡ 作为顶级分类 ≡</option>
+                                                {volist name="category" id="vo"}
+                                                    <option value="{$vo.id}" {$vo.isend ? 'disabled' : ''} {if condition="$category_info.parentid eq $vo.id"}selected{/if}>{$vo.catname}</option>
+                                                {/volist}
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="hr-line-dashed"></div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">所属模型</label>
+                                        <div class="col-sm-10">
+                                            <select class="form-control m-b" name="modelid">
+                                                <option value="0" selected>≡ 请选择模型 ≡</option>
+                                                {volist name="models" id="vo"}
+                                                    <option value="{$vo.id}" {if condition="$vo.id eq $category_info.modelid"}selected{/if}>{$vo.name}</option>
+                                                {/volist}
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="hr-line-dashed"></div>
+                                     <div class="form-group">
+                                        <label class="col-sm-2 control-label">选择类型</label>
+                                        <div class="col-sm-10">
+                                            <select class="form-control m-b" name="cattype">
+                                              <option value="0" selected>≡ 请选择类型 ≡</option>
+                                              <option value="1" {if condition="$category_info.cattype eq 1"}selected{/if}>文章列表</option>
+                                              <option value="2" {if condition="$category_info.cattype eq 2"}selected{/if}>图片列表</option>
+                                              <option value="3" {if condition="$category_info.cattype eq 3"}selected{/if}>栏目介绍</option>
+                                              <option value="4" {if condition="$category_info.cattype eq 4"}selected{/if}>外部链接</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="hr-line-dashed"></div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">是否终极分类</label>
+                                        <div class="col-sm-10">
+                                        
+                                        <div class="radio i-checks">
+                                                <label><input type="radio" value="1" name="isend" {if condition="$category_info.isend eq 1"}checked{/if}> <i></i> 是</label>
+                                                <label><input type="radio" value="0" name="isend" {if condition="$category_info.isend eq 0"}checked{/if}> <i></i> 否</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="hr-line-dashed"></div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">分类目录</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" name="catdir" class="form-control" value="{$category_info.catdir}">
+                                        </div>
+                                    </div>
+                                    <div class="hr-line-dashed"></div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">指定分类地址</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" name="seturl" class="form-control" value="{$category_info.seturl}"> <span class="help-block m-b-none">留空按默认地址访问.</span>
+                                        </div>
+                                    </div>
+                                    <div class="hr-line-dashed"></div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">是否首页菜单显示</label>
+                                        <div class="col-sm-10">
+                                            <div class="radio i-checks">
+                                                <label><input type="radio" value="1" name="ismenu" {if condition="$category_info.ismenu eq 1"}checked{/if}> <i></i> 显示</label>
+                                                <label><input type="radio" value="0" name="ismenu" {if condition="$category_info.ismenu eq 0"}checked{/if}> <i></i> 隐藏</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="hr-line-dashed"></div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">排序</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" name="listorder" class="form-control" value="{$category_info.listorder}">
+                                        </div>
+                                    </div>
+
+                                    <div class="hr-line-dashed"></div>
+                                    
+                                    
+                                     <div class="form-group">
+                                        <label class="col-sm-2 control-label">栏目介绍</label>
+                                        <div class="col-sm-10">
+                                             <script id="container1" name="catinfo" type="text/plain">{$category_info.catinfo}</script>
+                                        <script>
+                                          var um = UE.getEditor('container1',{
+                                              initialFrameHeight:300,
+                                              autoHeightEnabled:false,
+                                              catchRemoteImageEnable:true
+                                          });
+
+                                        </script>
+                                        </div>
+                                    </div>
+                                    <div class="hr-line-dashed"></div>
+                                    
+                                    
+                                    
+                                    <div class="form-group">
+                                        <div class="col-sm-4 col-sm-offset-2">
+                                            <button class="btn btn-primary" type="submit">提交</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="__ADMIN__/js/bootstrap.min.js?v=3.3.6"></script>
+    <script src="__ADMIN__/js/content.min.js?v=1.0.0"></script>
+    <script src="__ADMIN__/js/plugins/iCheck/icheck.min.js"></script>
+    <script>
+        $(document).ready(function(){
+			$(".i-checks").iCheck({checkboxClass:"icheckbox_square-green",radioClass:"iradio_square-green",});
+			
+			 $("#btn_thumb").click(function(){
+	                    $("#file_thumb").click();
+             });
+			 
+			 $("#btn_thumb1").click(function(){
+	                    $("#file_thumb1").click();
+             });
+			 
+			 $("#btn_thumb2").click(function(){
+	                    $("#file_thumb2").click();
+             });
+			 $("#btn_thumb3").click(function(){
+	                    $("#file_thumb3").click();
+             });
+			 
+			    //异步上传
+                $("body").delegate('#file_thumb', 'change', function(){
+                    var filepath = $("input[name='thumb']").val();
+                    var arr = filepath.split('.');
+                    var ext = arr[arr.length-1];
+                    var allowext = new Array("jpg","png","gif");
+                    if(allowext.indexOf(ext)>=0){
+                        $.ajaxFileUpload({
+                          url: "{:url('uploads/upload_image')}",
+                          secureurl: false,
+                          fileElementId: 'file_thumb', //file标签ID
+                          dataType: 'json', //返回数据类型
+                          data:{name:'thumb'},
+                          success:function (data,status){
+                              $("#info_thumb").val(data);
+							  $("#add_thumb").attr('src','/uploads/'+ data);
+                              $("#info_thumb").focus();
+                          },
+                          complete:function (XMLHttpRequest){
+
+                          },
+                          error:function (data,status,e){
+                              layer.alert('上传失败!');
+                          },
+                      });
+                    } else {
+                        //清空file
+                        $("#file_thumb").val("");
+                        layer.alert('请上传合适的图片类型!');
+                    }
+
+                });
+				
+				 //异步上传
+                $("body").delegate('#file_thumb3', 'change', function(){
+                    var filepath = $("input[name='thumb3']").val();
+                    var arr = filepath.split('.');
+                    var ext = arr[arr.length-1];
+                    var allowext = new Array("jpg","png","gif");
+                    if(allowext.indexOf(ext)>=0){
+                        $.ajaxFileUpload({
+                          url: "{:url('uploads/upload_image')}",
+                          secureurl: false,
+                          fileElementId: 'file_thumb3', //file标签ID
+                          dataType: 'json', //返回数据类型
+                          data:{name:'thumb3'},
+                          success:function (data,status){
+                              $("#info_thumb3").val(data);
+							  $("#add_thumb3").attr('src','/uploads/'+ data);
+                              $("#info_thumb3").focus();
+                          },
+                          complete:function (XMLHttpRequest){
+
+                          },
+                          error:function (data,status,e){
+                              layer.alert('上传失败!');
+                          },
+                      });
+                    } else {
+                        //清空file
+                        $("#file_thumb3").val("");
+                        layer.alert('请上传合适的图片类型!');
+                    }
+
+                });
+				
+				
+				//异步上传
+                $("body").delegate('#file_thumb1', 'change', function(){
+                    var filepath = $("input[name='thumb1']").val();
+                    var arr1 = filepath.split('.');
+                    var ext1 = arr1[arr1.length-1];
+                    var allowext1 = new Array("jpg","png","gif");
+                    if(allowext1.indexOf(ext1)>=0){
+                        $.ajaxFileUpload({
+                          url: "{:url('uploads/upload_image')}",
+                          secureurl: false,
+                          fileElementId: 'file_thumb1', //file标签ID
+                          dataType: 'json', //返回数据类型
+                          data:{name:'thumb1'},
+                          success:function (data,status){
+                              $("#info_thumb1").val(data);
+							  $("#edit_thumb").attr('src','/uploads/'+ data);
+                              $("#info_thumb1").focus();
+                          },
+                          complete:function (XMLHttpRequest){
+
+                          },
+                          error:function (data,status,e){
+                              layer.alert('上传失败!');
+                          },
+                      });
+                    } else {
+                        //清空file
+                        $("#file_thumb1").val("");
+                        layer.alert('请上传合适的图片类型!');
+                    }
+
+                });
+				
+				//异步上传
+                $("body").delegate('#file_thumb2', 'change', function(){
+                    var filepath = $("input[name='thumb2']").val();
+                    var arr1 = filepath.split('.');
+                    var ext1 = arr1[arr1.length-1];
+                    var allowext1 = new Array("jpg","png","gif");
+                    if(allowext1.indexOf(ext1)>=0){
+                        $.ajaxFileUpload({
+                          url: "{:url('uploads/upload_image')}",
+                          secureurl: false,
+                          fileElementId: 'file_thumb2', //file标签ID
+                          dataType: 'json', //返回数据类型
+                          data:{name:'thumb2'},
+                          success:function (data,status){
+                              $("#info_thumb2").val(data);
+							  $("#edit_thumb2").attr('src','/uploads/'+ data);
+                              $("#info_thumb2").focus();
+                          },
+                          complete:function (XMLHttpRequest){
+
+                          },
+                          error:function (data,status,e){
+                              layer.alert('上传失败!');
+                          },
+                      });
+                    } else {
+                        //清空file
+                        $("#file_thumb2").val("");
+                        layer.alert('请上传合适的图片类型!');
+                    }
+
+                });
+			
+		});
+    </script>
+    <script src="__ADMIN__/js/plugins/layer/layer.min.js"></script>
+    <script src="__ADMIN__/js/layer_hplus.js"></script>
+
+</body>
+
+</html>
