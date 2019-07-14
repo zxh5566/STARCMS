@@ -59,12 +59,12 @@
  {volist name="menu" id="vo"}
                         <li>
                             <a href="#"><i class="fa {$vo.icon}"></i> <span class="nav-label">{$vo.name}</span><span class="fa arrow"></span></a>
-                            {eq name="vo.child" value="1"}
+                            {eq name="$vo.child" value="1"}
                                 <ul class="nav nav-second-level">
                                     {volist name="vo.son" id="voson"}
                                         <li>
-                                            <a {eq name="voson.child" value="0"}class="J_menuItem"{/eq} href="{if condition='voson.child eq 1'}#{else /}{:url($voson.module.'/'.$voson.controller.'/'.$voson.action)}{/if}">{$voson.name} {eq name="voson.child" value="1"}<span class="fa arrow"></span>{/eq}</a>
-                                            {eq name="voson.child" value="1"}
+                                            <a {eq name="$voson.child" value="0"}class="J_menuItem"{/eq} href="{if condition='$voson.child eq 1'}#{else /}{:url($voson.module.'/'.$voson.controller.'/'.$voson.action)}{/if}">{$voson.name} {eq name="$voson.child" value="1"}<span class="fa arrow"></span>{/eq}</a>
+                                            {eq name="$voson.child" value="1"}
                                                 <ul class="nav nav-third-level">
                                                     {volist name="voson.son" id="voend"}
                                                         <li><a class="J_menuItem" href="{:url($voend.module.'/'.$voend.controller.'/'.$voend.action)}">{$voend.name}</a></li>

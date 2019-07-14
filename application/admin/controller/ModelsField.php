@@ -40,8 +40,8 @@ class ModelsField extends Common
                 $this->assign('fieldinfo',$fieldinfo);
             }
 			 
-            $this->assign('total_num',count($info));
-            $this->assign('forminfos',$info);
+/*            $this->assign('total_num',count($info));
+            $this->assign('forminfos',$info);*/
 
         return view();
     }
