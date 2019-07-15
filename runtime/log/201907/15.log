@@ -1,0 +1,276 @@
+---------------------------------------------------------------
+[ 2019-07-15T08:30:44+08:00 ] 127.0.0.1 GET starcms.com/
+[运行时间：0.168010s] [吞吐率：5.95req/s] [内存消耗：2,563.68kb] [文件加载：50]
+[ info ] [ LANG ] E:\Apache24\htdocs\STARCMS\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => '',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'starcms.com',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'cookie' => '__guid=31762556.1637735616920367000.1562896101436.0547',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.029002s ] mysql:host=127.0.0.1;dbname=studyfoxcms;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `sfox_config` [ RunTime:0.080004s ]
+[ sql ] [ SQL ] SELECT `varname`,`value` FROM `sfox_config` [ RunTime:0.004000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `sfox_category` [ RunTime:0.003000s ]
+[ sql ] [ SQL ] SELECT * FROM `sfox_category` ORDER BY `listorder` [ RunTime:0.001000s ]
+[ error ] [8]未定义数组索引: template[E:\Apache24\htdocs\STARCMS\application\index\controller\Index.php:21]
+[ error ] [10501]SQLSTATE[42S02]: Base table or view not found: 1146 Table 'studyfoxcms.sfox_debris' doesn't exist[E:\Apache24\htdocs\STARCMS\thinkphp\library\think\db\Connection.php:385]
+---------------------------------------------------------------
+[ 2019-07-15T08:34:15+08:00 ] 127.0.0.1 GET starcms.com/
+[运行时间：0.071004s] [吞吐率：14.08req/s] [内存消耗：2,219.82kb] [文件加载：39]
+[ info ] [ LANG ] E:\Apache24\htdocs\STARCMS\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => '',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'starcms.com',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'cookie' => '__guid=31762556.1637735616920367000.1562896101436.0547; monitor_count=1',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ error ] [1045]SQLSTATE[HY000] [1045] Access denied for user 'root'@'221.198.238.240' (using password: YES)[E:\Apache24\htdocs\STARCMS\thinkphp\library\think\db\Connection.php:295]
+---------------------------------------------------------------
+[ 2019-07-15T08:34:18+08:00 ] 127.0.0.1 GET starcms.com/
+[运行时间：0.086005s] [吞吐率：11.63req/s] [内存消耗：2,220.38kb] [文件加载：39]
+[ info ] [ LANG ] E:\Apache24\htdocs\STARCMS\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => '',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'starcms.com',
+  'connection' => 'keep-alive',
+  'cache-control' => 'max-age=0',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'cookie' => '__guid=31762556.1637735616920367000.1562896101436.0547; monitor_count=2',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ error ] [1045]SQLSTATE[HY000] [1045] Access denied for user 'root'@'221.198.238.240' (using password: YES)[E:\Apache24\htdocs\STARCMS\thinkphp\library\think\db\Connection.php:295]
+---------------------------------------------------------------
+[ 2019-07-15T08:34:52+08:00 ] 127.0.0.1 GET starcms.com/
+[运行时间：0.066004s] [吞吐率：15.15req/s] [内存消耗：2,220.38kb] [文件加载：39]
+[ info ] [ LANG ] E:\Apache24\htdocs\STARCMS\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => '',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'starcms.com',
+  'connection' => 'keep-alive',
+  'cache-control' => 'max-age=0',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'cookie' => '__guid=31762556.1637735616920367000.1562896101436.0547; monitor_count=3',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ error ] [1045]SQLSTATE[HY000] [1045] Access denied for user 'root'@'221.198.238.240' (using password: YES)[E:\Apache24\htdocs\STARCMS\thinkphp\library\think\db\Connection.php:295]
+---------------------------------------------------------------
+[ 2019-07-15T08:37:29+08:00 ] 127.0.0.1 GET starcms.com/
+[运行时间：0.115007s] [吞吐率：8.70req/s] [内存消耗：2,283.80kb] [文件加载：43]
+[ info ] [ LANG ] E:\Apache24\htdocs\STARCMS\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => '',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'starcms.com',
+  'connection' => 'keep-alive',
+  'cache-control' => 'max-age=0',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'cookie' => '__guid=31762556.1637735616920367000.1562896101436.0547; monitor_count=4',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.033001s ] mysql:host=101.201.223.149;dbname=starcms;charset=utf8
+[ error ] [10501]SQLSTATE[42S02]: Base table or view not found: 1146 Table 'starcms.sfox_config' doesn't exist[E:\Apache24\htdocs\STARCMS\thinkphp\library\think\db\Connection.php:385]
+---------------------------------------------------------------
+[ 2019-07-15T08:37:51+08:00 ] 127.0.0.1 GET starcms.com/
+[运行时间：0.228013s] [吞吐率：4.39req/s] [内存消耗：2,545.14kb] [文件加载：42]
+[ info ] [ LANG ] E:\Apache24\htdocs\STARCMS\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => '',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'starcms.com',
+  'connection' => 'keep-alive',
+  'cache-control' => 'max-age=0',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'cookie' => '__guid=31762556.1637735616920367000.1562896101436.0547; monitor_count=5',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\index\controller\Index->index[ E:\Apache24\htdocs\STARCMS\application\index\controller\Index.php ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.029002s ] mysql:host=101.201.223.149;dbname=starcms;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `star_config` [ RunTime:0.027002s ]
+[ sql ] [ SQL ] SELECT `varname`,`value` FROM `star_config` [ RunTime:0.025001s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `star_category` [ RunTime:0.026002s ]
+[ sql ] [ SQL ] SELECT * FROM `star_category` ORDER BY `listorder` [ RunTime:0.023001s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `star_debris` [ RunTime:0.023001s ]
+[ sql ] [ SQL ] SELECT * FROM `star_debris` [ RunTime:0.018001s ]
+---------------------------------------------------------------
+[ 2019-07-15T08:37:51+08:00 ] 127.0.0.1 GET starcms.com/skin/ecms/css/fonts/fontawesome-webfont.woff2?v=4.4.0
+[运行时间：0.033002s] [吞吐率：30.30req/s] [内存消耗：1,077.48kb] [文件加载：27]
+[ info ] [ LANG ] E:\Apache24\htdocs\STARCMS\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'Apache24',
+    1 => 'htdocs',
+    2 => 'STARCMS',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'starcms.com',
+  'connection' => 'keep-alive',
+  'origin' => 'http://starcms.com',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36',
+  'accept' => '*/*',
+  'referer' => 'http://starcms.com/public/static/index/default/css/autoptimize.css',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'cookie' => '__guid=31762556.1637735616920367000.1562896101436.0547; monitor_count=6',
+)
+[ info ] [ PARAM ] array (
+  'v' => '4.4.0',
+  'skin' => 'ecms',
+  'css' => 'fonts',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-07-15T08:37:51+08:00 ] 127.0.0.1 GET starcms.com/skin/ecms/css/fonts/fontawesome-webfont.woff?v=4.4.0
+[运行时间：0.025002s] [吞吐率：40.00req/s] [内存消耗：1,077.48kb] [文件加载：27]
+[ info ] [ LANG ] E:\Apache24\htdocs\STARCMS\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'Apache24',
+    1 => 'htdocs',
+    2 => 'STARCMS',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'starcms.com',
+  'connection' => 'keep-alive',
+  'origin' => 'http://starcms.com',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36',
+  'accept' => '*/*',
+  'referer' => 'http://starcms.com/public/static/index/default/css/autoptimize.css',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'cookie' => '__guid=31762556.1637735616920367000.1562896101436.0547; monitor_count=6',
+)
+[ info ] [ PARAM ] array (
+  'v' => '4.4.0',
+  'skin' => 'ecms',
+  'css' => 'fonts',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-07-15T08:37:51+08:00 ] 127.0.0.1 GET starcms.com/skin/ecms/css/fonts/fontawesome-webfont.ttf?v=4.4.0
+[运行时间：0.031001s] [吞吐率：32.26req/s] [内存消耗：1,077.48kb] [文件加载：27]
+[ info ] [ LANG ] E:\Apache24\htdocs\STARCMS\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'Apache24',
+    1 => 'htdocs',
+    2 => 'STARCMS',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'starcms.com',
+  'connection' => 'keep-alive',
+  'origin' => 'http://starcms.com',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36',
+  'accept' => '*/*',
+  'referer' => 'http://starcms.com/public/static/index/default/css/autoptimize.css',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'cookie' => '__guid=31762556.1637735616920367000.1562896101436.0547; monitor_count=6',
+)
+[ info ] [ PARAM ] array (
+  'v' => '4.4.0',
+  'skin' => 'ecms',
+  'css' => 'fonts',
+)
+[ info ] [ LOG ] INIT File
